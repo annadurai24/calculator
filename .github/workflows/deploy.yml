@@ -19,7 +19,10 @@ jobs:
 
     - name: Deploy to EC2
       run: |
-        echo annadurai
+        echo ${{ secrets.EC2_USER }}
+        echo ${{ secrets.EC2_HOST }}
+        echo ${{ secrets.APP_PATH}}
+        echo ${{ secrets.EC2_SSH_KEY}}
         ssh -o StrictHostKeyChecking=no -i private_key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
           cd ${{ secrets.APP_PATH }}
           git fetch --all
